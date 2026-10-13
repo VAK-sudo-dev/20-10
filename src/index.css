@@ -1,0 +1,63 @@
+:root{--pink:#F9CFDA;--rose:#D98BA3;--cream:#FFF8F3;--brown:#704C4C;--gold:#D9AD62;--bg1:#FFF1F5;--bg2:#FFF8F3;--card:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root{--bg1:#3a2a31;--bg2:#2b2025;--card:#4a373f;--brown:#f3d9de}}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100vh;font-family:'Be Vietnam Pro',system-ui,sans-serif;color:var(--brown);background:linear-gradient(160deg,var(--bg1),var(--bg2)) fixed;overflow-x:hidden}
+.petals{position:fixed;inset:0;pointer-events:none;z-index:1}
+.screen{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px}
+h1,h2{font-family:'Caveat',cursive;margin:.2em 0;font-weight:700;color:var(--rose);line-height:1.1}
+h1{font-size:clamp(2.4rem,9vw,3.8rem)}h2{font-size:clamp(2rem,7vw,3rem)}
+p{line-height:1.6;max-width:30em}
+.flower{font-size:3.2rem;display:inline-block;animation:sway 3s ease-in-out infinite}
+@keyframes sway{50%{transform:rotate(8deg) scale(1.06)}}
+.row{display:flex;gap:10px;align-items:center;justify-content:center;margin:18px 0}
+input{font:600 1.1rem 'Be Vietnam Pro',sans-serif;padding:12px 16px;border:2px solid var(--pink);border-radius:14px;background:var(--card);color:var(--brown);outline:none;width:100%}
+input:focus{border-color:var(--rose)}
+input.num{width:72px;text-align:center;font-size:1.1rem;font-weight:700;padding:12px 12px}
+.namebox{position:relative;width:min(320px,86vw);margin:14px 0 18px}
+.sugg{position:absolute;left:0;right:0;top:calc(100% + 6px);margin:0;padding:6px;list-style:none;background:var(--card);border-radius:14px;box-shadow:0 12px 30px rgba(112,76,76,.25);text-align:left;z-index:10}
+.sugg li{padding:10px 14px;border-radius:10px;cursor:pointer}
+.sugg li.on,.sugg li:hover{background:var(--pink);color:#704C4C}
+.btn{font:600 1rem 'Be Vietnam Pro',sans-serif;background:var(--rose);color:#fff;border:0;border-radius:999px;padding:12px 28px;cursor:pointer;transition:transform .2s}
+.btn:hover{transform:translateY(-2px) scale(1.04)}
+.hint{font-size:.9rem;opacity:.75;min-height:1.4em}
+.burst{display:flex;font:700 clamp(3.5rem,16vw,6rem) 'Caveat',cursive;color:var(--rose);height:110px}
+.burst span{display:inline-block}
+/* phong thư */
+.stage{position:relative;width:320px;height:210px;margin:200px auto 0;perspective:900px}
+@media(min-width:700px){.stage{zoom:1.25}}
+.env-back,.env-front{position:absolute;inset:0;border-radius:10px}
+.env-back{background:#f1b6c7;z-index:1;box-shadow:0 18px 40px rgba(217,139,163,.3)}
+.env-front{z-index:4;background:linear-gradient(160deg,#F9CFDA,#f7c9d6);clip-path:polygon(0 0,50% 58%,100% 0,100% 100%,0 100%);pointer-events:none}
+.flap{position:absolute;left:0;right:0;top:0;height:58%;z-index:5;background:#f3bccb;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;pointer-events:none}
+.seal{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);z-index:6;font-size:2.2rem;background:none;border:0;cursor:pointer;animation:beat 1.6s infinite}
+@keyframes beat{50%{transform:translate(-50%,-50%) scale(1.18)}}
+.paper{position:absolute;background:#fffdf8;color:#5a3d3d;box-shadow:0 10px 25px rgba(112,76,76,.3);border-radius:6px;pointer-events:none;cursor:pointer}
+.opened .paper{pointer-events:auto}
+.letter{left:25px;bottom:12px;width:270px;height:290px;z-index:2;padding:16px 18px;text-align:left;background:repeating-linear-gradient(#fffdf8,#fffdf8 27px,#fbe3ea 28px);overflow:hidden}
+.lh{font:700 1.7rem 'Caveat',cursive;color:var(--rose)}
+.preview{font:500 1.4rem/28px 'Caveat',cursive;white-space:pre-line;display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden;margin-top:2px}
+.more{position:absolute;left:0;right:0;bottom:0;padding:22px 0 12px;text-align:center;font:700 1.15rem 'Caveat',cursive;color:var(--rose);background:linear-gradient(transparent,#fffdf8 60%)}
+.photo{left:185px;top:20px;width:130px;z-index:3;padding:7px 7px 4px}
+.photo img{width:100%;height:112px;object-fit:cover;border-radius:3px;display:block}
+.photo small{display:block;text-align:center;font:700 1rem 'Caveat',cursive;margin-top:2px}
+.opened .paper:hover{filter:brightness(1.03)}
+.below{min-height:120px;margin-top:20px}
+/* overlays */
+.ov{position:fixed;inset:0;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(60,30,40,.55);backdrop-filter:blur(14px);padding:20px}
+.x{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:18px;font-size:2.2rem;color:#fff;background:none;border:0;cursor:pointer;z-index:2}
+.paperfull{background:#fffdf8;color:#5a3d3d;max-width:480px;width:100%;max-height:85vh;overflow:auto;border-radius:8px;padding:30px 26px;box-shadow:0 20px 60px rgba(0,0,0,.4);text-align:left;font:500 1.65rem/1.5 'Caveat',cursive}
+.paperfull p{margin:.3em 0;max-width:none}
+.paperfull .sign{text-align:right;color:var(--rose);margin-top:1em}
+.fig{margin:0;text-align:center;color:#fff}
+.fig img{max-width:100%;max-height:78vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.fig figcaption{margin-top:10px;font:700 1.4rem 'Caveat',cursive}
+.nav{display:flex;gap:16px;align-items:center;color:#fff;margin-top:14px}
+.nav button{background:rgba(255,255,255,.2);border:0;color:#fff;font-size:1.3rem;border-radius:50%;width:42px;height:42px;cursor:pointer}
+.final{background:radial-gradient(circle,#4a1f33,#1a0b14);text-align:center;color:#fff;z-index:30}
+.final h2{font-size:clamp(2.4rem,11vw,4.5rem);color:var(--pink)}
+.big{font:700 clamp(4rem,22vw,8rem) 'Caveat',cursive;color:var(--gold);line-height:1}
+.spark{position:absolute;inset:0;margin:auto;width:min(100vw,600px);height:min(100vw,600px);pointer-events:none;opacity:.9}
+.final>*:not(.spark){position:relative}
+.music{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:40;width:44px;height:44px;border-radius:50%;border:0;background:var(--card);box-shadow:0 6px 20px rgba(0,0,0,.2);font-size:1.2rem;cursor:pointer}
